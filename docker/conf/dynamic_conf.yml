@@ -1,0 +1,65 @@
+http:
+  routers:
+    router0:
+      entryPoints:
+      - websecure 
+      middlewares:
+      - basic-auth
+      service: ingress-spark-job 
+      rule: "Path(`/spark-job`) && Host(`world-zeppelin.duckdns.org`)"
+      tls: "true"
+
+    router1:
+      entryPoints:
+      - websecure 
+      middlewares:
+      - basic-auth
+      service: ingress 
+      rule: Host(`world-jupyter.duckdns.org`)
+      tls: 
+         certResolver: myresolver 
+
+    router2:
+      entryPoints:
+      - websecure 
+      middlewares:
+      - basic-auth
+      service: ingress 
+      rule: Host(`world-zeppelin.duckdns.org`)
+      tls:
+         certResolver: myresolver 
+
+           #    router2:
+           #      entryPoints:
+           #      - websecure 
+           #      middlewares:
+           #      - basic-auth
+           #      service: ingress_ssl
+           #      rule: Host(`world-dashboard.duckdns.org`)
+           #      tls: "true"
+
+  services:
+    hello-world:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.100.199:9080/"
+
+    ingress:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.100.250"
+
+    ingress-spark-job:
+      loadBalancer:
+        servers:
+          - url: "http://192.168.100.250:81"
+
+# Declaring the basic auth middleware with the user credentials
+  middlewares:
+    basic-auth:
+      basicAuth:
+        usersFile: "/conf/users.txt" 
+
+log:
+  level: DEBUG
+
