@@ -49,7 +49,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami1.tls=true"
-      - "traefik.http.routers.whoami1.rule=Host(`world-app.duckdns.org`)"
+      - "traefik.http.routers.whoami1.rule=Host(`world-dashboard.duckdns.org`)"
       - "traefik.http.routers.whoami1.entrypoints=websecure"
       - "traefik.http.routers.whoami1.tls.certresolver=myresolver"
     restart: unless-stopped
