@@ -9,3 +9,5 @@
       * mTLS + Traefik to improve security
          * https://doc.traefik.io/traefik/https/tls/#client-authentication-mtls
          * https://en.wikipedia.org/wiki/Mutual_authentication
+
+![alt text](docs/traefik-http-routers.png "Traefik HTTP Services screenshot")
