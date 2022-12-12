@@ -7,8 +7,8 @@
       
    * TODO
       * mTLS + Traefik to improve security
-         * https://doc.traefik.io/traefik/routing/services/#certificates
-         * https://en.wikipedia.org/wiki/Mutual_authentication
+         * [Traefik services TLS autentication](https://doc.traefik.io/traefik/routing/services/#certificates)
+         * [TLS mutual authentication](https://en.wikipedia.org/wiki/Mutual_authentication#mTLS)
       * Upgrade from Raspberry PI 4 to [Orange Pi 5](http://www.orangepi.org/html/hardWare/computerAndMicrocontrollers/details/Orange-Pi-5.html)
          * ARM V7->V8 64 bits
 
