@@ -54,6 +54,25 @@ services:
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"
     restart: unless-stopped
       
+  yacht:
+    image: "selfhostedpro/yacht"
+    container_name: "yacht"
+    volumes:
+      - yacht:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /compose:/compose  
+    environment:
+      - PUID=0
+      - PGID=0
+      - COMPOSE_DIR=/compose
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.yacht.tls=true"
+      - "traefik.http.routers.yacht.rule=Host(`world-pihole.duckdns.org`)"
+      - "traefik.http.routers.yacht.entrypoints=websecure"
+      - "traefik.http.routers.yacht.tls.certresolver=myresolver"
+    restart: unless-stopped
+
   snowflake-proxy:
     network_mode: host
     image: thetorproject/snowflake-proxy:latest
@@ -77,3 +96,6 @@ services:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
 
+
+volumes:
+  yacht:

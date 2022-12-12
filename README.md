@@ -4,6 +4,8 @@
 
    * Public URL's: forward to a local Docker container
       * https://world-dashboard.duckdns.org/whoami
+      * https://world-pihole.duckdns.org
+         * [Docker container management yacht](https://yacht.sh)
       
    * TODO
       * mTLS + Traefik to improve security
