@@ -6,6 +6,7 @@
       * https://world-dashboard.duckdns.org/whoami
       * https://world-pihole.duckdns.org
          * [Docker container management yacht](https://yacht.sh)
+         * ![alt text](docs/yacht-dashboard.png "YACHT dashboard")
       
    * TODO
       * mTLS + Traefik to improve security
