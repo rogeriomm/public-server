@@ -51,6 +51,7 @@ services:
       - "traefik.http.routers.whoami.tls=true"
       - "traefik.http.routers.whoami.rule=PathPrefix(`/whoami`)&&Host(`world-dashboard.duckdns.org`)"
       - "traefik.http.routers.whoami.entrypoints=websecure"
+      - "traefik.http.routers.whoami.middlewares=basic-auth@file"
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"
     restart: unless-stopped
       
@@ -70,6 +71,7 @@ services:
       - "traefik.http.routers.yacht.tls=true"
       - "traefik.http.routers.yacht.rule=Host(`world-pihole.duckdns.org`)"
       - "traefik.http.routers.yacht.entrypoints=websecure"
+      - "traefik.http.routers.yacht.middlewares=basic-auth@file"
       - "traefik.http.routers.yacht.tls.certresolver=myresolver"
     restart: unless-stopped
 
