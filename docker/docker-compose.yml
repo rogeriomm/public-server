@@ -100,5 +100,46 @@ services:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
 
+  prometheus:
+    image: prom/prometheus:v2.12.0
+    container_name: "prometheus"
+    # volumes:
+    #   - ./prometheus/config/:/etc/prometheus/
+    #   - ./prometheus/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.route-prefix=/prometheus'
+      - '--web.external-url=http://world-dashboard.duckdns.org/prometheus'
+    ports:
+      - 9090:9090
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.tls=true"
+      - "traefik.http.routers.prometheus.rule=PathPrefix(`/prometheus`)&&Host(`world-dashboard.duckdns.org`)"
+      - "traefik.http.routers.prometheus.entrypoints=websecure"
+      - "traefik.http.routers.prometheus.middlewares=basic-auth@file"
+      - "traefik.http.routers.prometheus.tls.certresolver=myresolver"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana
+    container_name: "grafana"
+    links:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      # - ./grafana/data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.tls=true"
+      - "traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)&&Host(`world-dashboard.duckdns.org`)"
+      - "traefik.http.routers.grafana.entrypoints=websecure"
+      - "traefik.http.routers.grafana.middlewares=basic-auth@file"
+      - "traefik.http.routers.grafana.tls.certresolver=myresolver"
+    restart: unless-stopped
+
 volumes:
   yacht:
