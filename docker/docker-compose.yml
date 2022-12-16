@@ -111,8 +111,6 @@ services:
       - '--storage.tsdb.path=/prometheus'
       - '--web.route-prefix=/prometheus'
       - '--web.external-url=http://world-dashboard.duckdns.org/prometheus'
-    ports:
-      - 9090:9090
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.prometheus.tls=true"
@@ -127,17 +125,15 @@ services:
     container_name: "grafana"
     links:
       - prometheus
-    ports:
-      - 3000:3000
     volumes:
       # - ./grafana/data:/var/lib/grafana
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/etc/grafana/:/etc/grafana/
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.tls=true"
       - "traefik.http.routers.grafana.rule=PathPrefix(`/grafana`)&&Host(`world-dashboard.duckdns.org`)"
       - "traefik.http.routers.grafana.entrypoints=websecure"
-      - "traefik.http.routers.grafana.middlewares=basic-auth@file"
+        #- "traefik.http.routers.grafana.middlewares=basic-auth@file"
       - "traefik.http.routers.grafana.tls.certresolver=myresolver"
     restart: unless-stopped
 
