@@ -126,7 +126,7 @@ services:
     links:
       - prometheus
     volumes:
-      # - ./grafana/data:/var/lib/grafana
+      - ./grafana/data:/var/lib/grafana
       - ./grafana/etc/grafana/:/etc/grafana/
     labels:
       - "traefik.enable=true"
@@ -139,3 +139,4 @@ services:
 
 volumes:
   yacht:
+  grafana:
