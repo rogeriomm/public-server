@@ -29,6 +29,17 @@ services:
       - "./letsencrypt:/letsencrypt"
       - "./conf:/conf"   
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.tls=true"
+      - "traefik.http.routers.traefik.rule=Host(`world-dashboard.duckdns.org`)&&PathPrefix(`/traefik`, `/api`)"
+      - "traefik.http.routers.traefik.service=api@internal"
+      - "traefik.http.routers.traefik.entrypoints=websecure"        
+      - "traefik.http.routers.traefik.middlewares=basic-auth@file"
+
+      # stripprefix for dashboard
+      - "traefik.http.routers.traefik.middlewares=mystrip"
+      - "traefik.http.middlewares.mystrip.stripprefix.prefixes=/traefik"
 
   duckdns:
     image: lscr.io/linuxserver/duckdns:latest
