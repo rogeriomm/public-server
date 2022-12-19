@@ -35,10 +35,10 @@ services:
       - "traefik.http.routers.traefik.rule=Host(`world-dashboard.duckdns.org`)&&PathPrefix(`/traefik`, `/api`)"
       - "traefik.http.routers.traefik.service=api@internal"
       - "traefik.http.routers.traefik.entrypoints=websecure"        
-      - "traefik.http.routers.traefik.middlewares=basic-auth@file"
+      - "traefik.http.routers.traefik.tls.certresolver=myresolver"
 
       # stripprefix for dashboard
-      - "traefik.http.routers.traefik.middlewares=mystrip"
+      - "traefik.http.routers.traefik.middlewares=basic-auth@file,mystrip"
       - "traefik.http.middlewares.mystrip.stripprefix.prefixes=/traefik"
 
   duckdns:
