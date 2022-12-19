@@ -4,6 +4,7 @@
 
    * Public URL's: forward to a local Docker container
       * https://world-dashboard.duckdns.org/whoami
+         * https://github.com/traefik/whoami
       * https://world-dashboard.duckdns.org/traefik
       * https://world-dashboard.duckdns.org/prometheus
       * https://world-dashboard.duckdns.org/grafana
