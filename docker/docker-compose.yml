@@ -101,7 +101,7 @@ services:
     network_mode: "host"
     environment:
       TZ: 'America/Sao_Paulo'
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      # WEBPASSWORD: 'set a secure password here, or it will be random'
     # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole:/etc/pihole'
@@ -110,6 +110,15 @@ services:
     cap_add:
       - NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.tls=true"
+      - "traefik.http.routers.pihole.rule=Host(`world-dashboard.duckdns.org`)&&PathPrefix(`/pihole`)"
+      - "traefik.http.routers.pihole.service=api@internal"
+      - "traefik.http.routers.pihole.entrypoints=websecure"
+      - "traefik.http.routers.pihole.tls.certresolver=myresolver"
+      - "traefik.http.routers.pihole.middlewares=basic-auth@file,pihole-strip"
+      - "traefik.http.middlewares.pihole-strip.stripprefix.prefixes=/pihole"
 
   prometheus:
     image: prom/prometheus:v2.12.0
