@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.7"
 
 services:
 
@@ -19,8 +19,8 @@ services:
       #- "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.myresolver.acme.email=rogermm@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"        
-      - "--accesslog=true"
-      - "--accesslog.filepath=/logs/access.log"
+      #- "--accesslog=true"
+      #- "--accesslog.filepath=/logs/access.log"
     environment:
       TZ: 'America/Sao_Paulo'
     ports:
