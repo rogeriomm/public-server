@@ -6,8 +6,6 @@
       * https://world-dashboard.duckdns.org/whoami
          * https://github.com/traefik/whoami
       * https://world-dashboard.duckdns.org/traefik
-      * https://world-dashboard.duckdns.org/prometheus
-      * https://world-dashboard.duckdns.org/grafana
       * https://world-pihole.duckdns.org
          * [Docker container management yacht](https://yacht.sh)
          * ![alt text](docs/yacht-dashboard.png "YACHT dashboard")
