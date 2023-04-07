@@ -9,7 +9,7 @@
       * https://world-pihole.duckdns.org
          * [Docker container management yacht](https://yacht.sh)
          * ![alt text](docs/yacht-dashboard.png "YACHT dashboard")
-      * https://world-dashboard.duckdns.org/pihole/
+      * https://world-dashboard.duckdns.org/pihole/admin/
          * https://pi-hole.net/
       
    * TODO
