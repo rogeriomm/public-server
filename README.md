@@ -9,6 +9,8 @@
       * https://world-pihole.duckdns.org
          * [Docker container management yacht](https://yacht.sh)
          * ![alt text](docs/yacht-dashboard.png "YACHT dashboard")
+      * https://world-dashboard.duckdns.org/pihole/
+         * https://pi-hole.net/
       
    * TODO
       * mTLS + Traefik to improve security
